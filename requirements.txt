@@ -1,0 +1,13 @@
+# VectorDB
+sentence_transformers
+
+# Streamlit
+streamlit
+ai21
+
+scikit-learn
+
+
+# EmailClient
+mailjet_rest
+
