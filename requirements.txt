@@ -6,7 +6,7 @@ streamlit
 ai21
 
 scikit-learn
-
+nltk
 
 # EmailClient
 mailjet_rest

@@ -68,7 +68,7 @@ class SemanticSearchEngine:
             words_in_q = [lemmatizer.lemmatize(word) for word in q.lower().split()]
             common_weighted_keywords = set(words_in_x).intersection(set(weighted_keywords.keys())).intersection(set(words_in_q))
             if common_weighted_keywords:
-                keyword_score = sum(weighted_keywords.get(keyword, 0) for keyword in common_weighted_keywords)
+                keyword_score = sum(weighted_keywords.get(keyword, {"weight":0}).get("weight", 0) for keyword in common_weighted_keywords)
             else:
                 keyword_score = 0 
             keyword_scores.append(keyword_score)
@@ -110,7 +110,7 @@ class SemanticSearchEngine:
         keyword_scores = self.get_keyword_match(words_in_x)
         
         # Adjust scores based on keyword presence
-        print(">>>>Scores", best_match_score, keyword_scores)
+        # print(">>>>Scores", best_match_score, keyword_scores)
         adjusted_scores = [best_match_score * score for score in keyword_scores]
 
         # Find new best match based on adjusted scores
