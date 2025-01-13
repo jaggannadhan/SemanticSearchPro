@@ -59,7 +59,7 @@ def main():
                 st.checkbox(keyword, value=True, disabled=True)
     
 
-# st.cache_resource.clear()
+st.cache_resource.clear()
 
 if __name__ == "__main__":
     main()
