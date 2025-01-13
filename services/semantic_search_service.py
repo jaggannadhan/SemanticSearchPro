@@ -1,5 +1,5 @@
 from transformers import AutoTokenizer, AutoModel
-from nltk.stem import WordNetLemmatizer
+# from nltk.stem import WordNetLemmatizer
 import time, torch
 import torch.nn.functional as F
 import traceback
@@ -59,16 +59,19 @@ class SemanticSearchEngine:
             return None
         
     def get_keyword_match(self, words_in_x):
-        lemmatizer = WordNetLemmatizer()
+        # lemmatizer = WordNetLemmatizer()
 
         # Check if weighted keywords are present in potential matches
         keyword_scores = []
         for q in FAQ_list:
             # q_keywords = re.findall(r'\b\w+\b', q.lower())
-            words_in_q = [lemmatizer.lemmatize(word) for word in q.lower().split()]
+            words_in_q = [word for word in q.lower().split()]
             common_weighted_keywords = set(words_in_x).intersection(set(weighted_keywords.keys())).intersection(set(words_in_q))
             if common_weighted_keywords:
-                keyword_score = sum(weighted_keywords.get(keyword, {"weight":0}).get("weight", 0) for keyword in common_weighted_keywords)
+                keyword_score = sum(
+                    weighted_keywords.get(keyword, {"weight":0}).get("weight", 0) 
+                    for keyword in common_weighted_keywords
+                )
             else:
                 keyword_score = 0 
             keyword_scores.append(keyword_score)
@@ -93,10 +96,10 @@ class SemanticSearchEngine:
 
 
         # Checking for Keywords
-        lemmatizer = WordNetLemmatizer()
+        # lemmatizer = WordNetLemmatizer()
 
         # x_keywords = re.findall(r'\b\w+\b', user_query.lower()) 
-        words_in_x = [lemmatizer.lemmatize(word) for word in user_query.lower().split()]
+        words_in_x = [word for word in user_query.lower().split()]
         print(words_in_x)
 
         has_weighted_keywords = any(keyword in words_in_x for keyword in weighted_keywords)
