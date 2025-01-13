@@ -5,7 +5,7 @@ from services.semantic_search_service import SemanticSearchEngine
 import time, math
 from services.weighted_keywords import weighted_keywords
 
-@st.cache_resource()
+# @st.cache_resource()
 def init_search_engine():
     return SemanticSearchEngine()
 
@@ -59,7 +59,7 @@ def main():
                 st.checkbox(keyword, value=True, disabled=True)
     
 
-st.cache_resource.clear()
+# st.cache_resource.clear()
 
 if __name__ == "__main__":
     main()
